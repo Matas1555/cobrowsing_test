@@ -3,6 +3,49 @@
   <head>
     <meta charset="UTF-8">
     <title>My First Webpage</title>
+    <!-- OpenReplay Tracking Code for my first project -->
+<script>
+  async function initializeOpenReplay() {
+    try {
+      // Fetch the user's public IP address
+      const ipResponse = await fetch('https://api.ipify.org?format=json');
+      const ipData = await ipResponse.json();
+      const ip = ipData.ip;
+
+      // Combine IP and user agent to create a unique identifier
+      const userAgent = navigator.userAgent;
+      //const user_id = btoa(`${ip}-${userAgent}`);
+      const user_id = ip;
+
+      // OpenReplay initialization
+      var initOpts = {
+		projectKey: "ZG9OGTfvMo3NF01JkkZB",
+		defaultInputMode: 2,
+		obscureTextNumbers: false,
+		obscureTextEmails: true,
+	  };
+      var startOpts = { userID: user_id };
+  (function(A,s,a,y,e,r){
+    r=window.OpenReplay=[e,r,y,[s-1, e]];
+    s=document.createElement('script');s.src=A;s.async=!a;
+    document.getElementsByTagName('head')[0].appendChild(s);
+    r.start=function(v){r.push([0])};
+    r.stop=function(v){r.push([1])};
+    r.setUserID=function(id){r.push([2,id])};
+    r.setUserAnonymousID=function(id){r.push([3,id])};
+    r.setMetadata=function(k,v){r.push([4,k,v])};
+    r.event=function(k,p,i){r.push([5,k,p,i])};
+    r.issue=function(k,p){r.push([6,k,p])};
+    r.isActive=function(){return false};
+    r.getSessionToken=function(){};
+  })("//static.openreplay.com/latest/openreplay-assist.js",1,0,initOpts,startOpts);
+    } catch (error) {
+      console.error('Error generating user ID:', error);
+    }
+  }
+
+  initializeOpenReplay();
+</script>
   </head>
 
   <body>
